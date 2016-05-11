@@ -1,0 +1,48 @@
+
+.f28{
+	font-size: 28px;
+}
+/*头部和底部导航栏*/
+
+.ycm-bar {
+	/*position: fixed;*/
+	z-index: 10;
+	height: 88px;
+	position: relative;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-bottom: 0;
+	background-color: #f7f7f7;
+	box-shadow: 0 0 2px rgba(0,0,0,.85);
+	box-shadow: 0 0 2px rgba(0,0,0,.85);
+    backface-visibility: hidden;
+}
+
+.ycm-title{
+	text-align: center;
+	margin: 0;
+	text-overflow: ellipsis;
+	color: #000;
+	font-size: 32px;
+	padding-top: 24px;
+	line-height: 88px;
+}
+.ycm-bar-back{
+	width: 48px;
+	height: 48px;
+	padding-left: 20px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	transform:rotate(180deg);
+	/*background-image: url(../images/arrow@3x.png);*/
+	/*background-size: 48px 48px;*/
+}
+.ycm-content-padded{
+
+    padding: 20px;
+    padding-top: 25px;
+    height: 80px;
+    font-size: 24px;
+    background-color: #f2f2f2
+}

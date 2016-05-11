@@ -1,0 +1,203 @@
+<template>
+
+<div >
+    <header class="ycm-bar ycm-bar-nav">
+      <img src="http://192.168.60.240/weex/android/weex/examples/common/images/arrow@3x.png" class="ycm-bar-back" onClick="back">
+      <text class="ycm-title">油卡充值</text>
+    </header>
+    <scroller>
+      <div class="ycm-content-padded"><text class="f28">持卡信息</text></div>
+      <div class="yk_info">
+        <div class="yc_info_li"><text class="f28 yc_info_tx" style="flex: 1;">加油卡号</text><input oninput="input" value="{{cardNo}}"  style="flex: 4;" type="tel" placeholder="请输入19位加油卡号" class="f28"></div>
+        <div class="yc_info_li"><text class="f28 yc_info_tx" style="flex: 1;">确认卡号</text><input style="flex: 4;" type="tel" placeholder="请再次确认卡号" class="f28"></div>
+      </div>
+       <div class="ycm-content-padded"><text class="f28">充值金额</text></div>
+       <div class="czje">
+          <div  onclick="{{itemClick(INDEX)}}" class="OilItem OilItem_{{IsDefault}}" index="{{id}}" repeat="{{OilItems}}" ><text class="f28 OilItem-tx OilItem-tx-{{IsDefault}}">{{OilName}}</text></div>
+          <!-- <div  class="OilItem OilItemOn" repeat="{{OilItems}}" else><text class="f28 OilItem-tx OilItemOn-tx">{{OilName}}</text></div> -->
+       </div>
+       <div class="info">
+          <div class="info-t"><text class="info-t-tx">加油卡充值说明</text></div>
+          <div class="info-t-p"><text class="f28">1. 充值订单的订单状态可以在充值记录中查询</text></div>
+          <div class="info-t-p"><text class="f28">2. 充值成功后，使用油卡加油前，请先将油卡交给加油站工作人员进行圈存，然后即可使用</text></div>
+          <div class="info-t-p"><text class="f28">3. 官方直充，全国通用，充值成功，立即到账</text></div>
+       </div>
+       <div class="yk-ft">
+         <div class="rule-box"> <switch checked="true"></switch><text class="f28" style="padding-top:15px">我已阅读《用户充值协议》</text></div>
+         <div  class="pay-btn"><text class="pay-btn-tx">待支付</text></div>
+       </div>
+    </scroller>
+</div>
+
+</template>
+
+<script>
+  require('./weex-ui');
+  var log=require('./common/js/ycApp');
+  var someModule = require('@weex-module/event')
+  module.exports = {
+    data: {
+       cardNo:"",
+       OilItems:[]
+    },
+    ready:function  (argument) {
+      var _self=this;
+    // console.log(JSON.stringify(log))
+     this.$sendHttp({
+      "url":"http://192.168.60.240/test.js",
+      },function(data){
+        _self.OilItems=JSON.parse(data)
+     })
+    /* someModule.testLog("22",function(data){
+         _self.$call('modal', 'alert', {
+            'message': data,
+            'okTitle': "okTitle",
+            'cancelTitle': "cancelTitle"
+          },function(){
+
+          });
+     })*/
+      //this.$openURL("//baidu.com")
+    },
+    methods:{
+      itemClick:function(index){
+        var _index=index;
+        var _len=this.OilItems.length;
+        for (var i = 0; i < _len; i++) {
+          if(i!=_index){
+            this.OilItems[i].IsDefault="false";
+          }
+        };
+        this.OilItems[_index].IsDefault="true";
+        console.log(JSON.stringify(this.OilItems))
+      },
+      back:function(){
+        this.$call('modal', 'toast', {
+          'message': "back",
+          'duration': 1
+        });
+      },
+      input:function(e){
+       /* var a="aaa".replace("aa","1");
+        console.log(a);
+        var _e=JSON.stringify(e);
+        var _val=e.value.replace("\n","");
+        this.cardNo=_val;
+        //console.log(_e)
+        console.log(_val)*/
+      }
+    }
+  }
+  module.exports.style=require('./common/css/ycm.we.css'); 
+</script>
+
+
+<style>
+  .rule-box{
+    padding-top: 20px;
+    height: 88px;
+  }
+  .yk-ft{
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #f2f2f2;
+    height: 400px;
+    margin-top: 20px;
+  }
+  .yk-ck{
+    width: 30px;
+    height: 30px;
+  }
+  .info{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .info-t{
+    border-top-width: 1px;
+    border-color: #d8d8d8;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  
+  }
+  .info-t-p{
+      margin-top: 5px;
+  }
+  .info-t-tx{
+    font-size: 32px;
+    color: #999;
+    margin-top: 20px;
+  }
+  .yk_info {
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-color: #d8d8d8;
+
+ }
+ .yc_info_li{
+    height: 88px;
+    
+    border-bottom-width: 1px;
+    border-color: #d8d8d8;
+    flex-direction: row;
+    align-items:flex-start;
+ }
+ .yc_info_tx{
+    padding-top: 28px;
+ }
+ .czje{
+    padding-top:20px;
+    padding-right: 20px;
+    padding-left: 10px; 
+    border-top-width: 1px;
+    border-color: #d8d8d8;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content:space-between;
+ }
+ .OilItem{
+    flex:1;
+    width: 135px;
+    height: 76px;
+    border-width:  1px;
+    border-color: #ff7519;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    font-size: 28px;
+    margin-left: 10px;
+    background-color: transparent;
+ }
+ .OilItem_true{
+  background-color: #ff7519
+ }
+ .OilItem-tx{
+    text-align: center;
+    padding-top: 18px;
+     color: #ff7519;
+ }
+ .OilItem-tx-true{
+    color: #fff
+ }
+
+ .pay-btn{
+    border-width:  1px;
+    border-color: #ff7519;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    font-size: 28px;
+    height: 88px;
+    background-color: #ff7519;
+    margin-top: 10px;
+ }
+ .pay-btn-tx{
+    color: #fff;
+    text-align: center;
+    padding-top: 25px;
+    font-size: 28px;
+    color: #fff;
+ }
+</style>
