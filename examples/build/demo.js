@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	;__weex_define__("@weex-component/49cf9fdbe0225fed05e595ff76bd26ae", [], function(__weex_require__, __weex_exports__, __weex_module__){
+	;__weex_define__("@weex-component/e5b2b140904ff7c38b033ef8262d6ade", [], function(__weex_require__, __weex_exports__, __weex_module__){
 
 	;
 	  __webpack_require__(1);
@@ -53,16 +53,49 @@
 	  __weex_module__.exports = {
 	    data: function () {return {
 	       cardNo:"",
-	       OilItems:[]
+	       OilItems:[
+	          {
+	            "id": 1,
+	            "OilName": "100元",
+	            "OilCode": "OilItem_10001",
+	            "Discount": "9.95折",
+	            "IsDefault": "false",
+	            "ItemPrice": 99.5
+	          },
+	          {
+	            "id": 2,
+	            "OilName": "200元",
+	            "OilCode": "OilItem_88888",
+	            "Discount": "9.95折",
+	            "IsDefault": "false",
+	            "ItemPrice": 199
+	          },
+	          {
+	            "id": 3,
+	            "OilName": "500元",
+	            "OilCode": "OilItem_10003",
+	            "Discount": "9.95折",
+	            "IsDefault": "true",
+	            "ItemPrice": 497.5
+	          },
+	          {
+	            "id": 4,
+	            "OilName": "1000元",
+	            "OilCode": "OilItem_10004",
+	            "Discount": "9.95折",
+	            "IsDefault": "false",
+	            "ItemPrice": 995
+	          }
+	        ]
 	    }},
 	    ready:function  (argument) {
 	      var _self=this;
 	    // console.log(JSON.stringify(log))
-	     this.$sendHttp({
+	     /*this.$sendHttp({
 	      "url":"http://192.168.60.240/test.js",
 	      },function(data){
 	        _self.OilItems=JSON.parse(data)
-	     })
+	     })*/
 	    /* someModule.testLog("22",function(data){
 	         _self.$call('modal', 'alert', {
 	            'message': data,
@@ -521,7 +554,7 @@
 	  }
 	})
 	})
-	;__weex_bootstrap__("@weex-component/49cf9fdbe0225fed05e595ff76bd26ae", {
+	;__weex_bootstrap__("@weex-component/e5b2b140904ff7c38b033ef8262d6ade", {
 	  "transformerVersion": "0.3.1"
 	},undefined)
 
